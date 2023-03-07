@@ -3,14 +3,14 @@ pipeline {
         TOKEN = credentials('SURGE_TOKEN')
       }
     agent {
-        docker { image 'josedom24/debian-npm'
+        docker { image 'legnakra/debian-npm'
         args '-u root:root'
         }
     }
     stages {
         stage('Clone') {
             steps {
-                git branch:'master',url:'https://github.com/josedom24/ic-travis-html5.git'
+                git branch:'master',url:'https://github.com/Legnakra/ic-html5.git'
             }
         }
         
@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy')
         {
             steps{
-                sh 'surge ./_build/ josedom24.surge.sh --token $TOKEN'
+                sh 'surge ./_build/ mariajesus.surge.sh --token $TOKEN'
             }
         }
         
